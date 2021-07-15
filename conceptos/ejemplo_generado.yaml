@@ -1,0 +1,17 @@
+servicio_de_google:
+    nombre:   "Google"
+    servidor: "google.es"
+    pruebas_startup: 
+        -   &pruebaPing
+            tipo: PruebaPing 
+            nombre: "Ping Startup"
+            timeout: 5
+            intervalo: 5
+            numero_fallos_permitidos_consecutivos: 3
+    pruebas_lifeness: 
+        -   <<: *pruebaPing
+            nombre: "Ping Lifeness"
+    pruebas_readyness:
+        -   <<: *pruebaPing
+            nombre: "Ping Lifeness"
+    monitorizar: True

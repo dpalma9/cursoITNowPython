@@ -1,0 +1,31 @@
+-   nombre:   "Google"
+    servidor: "google.es"
+    monitorizar: True
+    pruebas:
+        startup: 
+            -   &pruebaPing
+                tipo: PruebaPing 
+                nombre: "Ping Startup"
+                timeout: 5
+                intervalo: 5
+                numero_fallos_permitidos_consecutivos: 3
+        lifeness: 
+            -   <<: *pruebaPing
+                nombre: "Ping Lifeness"
+        readyness:
+            -   <<: *pruebaPing
+                nombre: "Ping Lifeness"
+    
+-   nombre:   "Facebook"
+    servidor: "facebook.es"
+    monitorizar: True
+    pruebas:
+        startup: 
+            -   <<: *pruebaPing
+        lifeness: 
+            -   <<: *pruebaPing
+                nombre: "Ping Lifeness"
+        readyness:
+            -   <<: *pruebaPing
+                nombre: "Ping Lifeness"
+        

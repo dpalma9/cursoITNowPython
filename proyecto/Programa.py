@@ -7,20 +7,26 @@ from Servicio import EstadoDeServicio
 def imprimir_servicios(servicios):
     for nombre,service in servicios.items():
             service.imprimir_estado_servicio()
-
-
 # 1º Crear un sistema de Monitorizacion
 sistema_de_monitorizacion=SistemaMonitorizacion()
+
+
+## NO QUIERO HACER ESTO:
+#################################################################################################
 # 2º Definir una serie de servicios con sus correspondientes pruebas
-pruebas_startup=( PruebaPing("Ping Startup", 5, 5, 3) ,)
-pruebas_lifeness=( PruebaPing("Ping Lifeness", 5, 2, 3) ,)
-pruebas_readyness=( PruebaPing("Ping Readyness", 5, 1, 3) ,)
+#pruebas_startup=( PruebaPing("Ping Startup", 5, 5, 3) ,)
+#pruebas_lifeness=( PruebaPing("Ping Lifeness", 5, 2, 3) ,)
+#pruebas_readyness=( PruebaPing("Ping Readyness", 5, 1, 3) ,)
 
-servicio_de_google=Servicio("Google", "google.es", pruebas_startup, pruebas_lifeness, pruebas_readyness, True)
-servicio_de_google_malo=Servicio("GoogleMalo", "googlemalo.es", pruebas_startup, pruebas_lifeness, pruebas_readyness, True)
+#servicio_de_google=Servicio("Google", "google.es", pruebas_startup, pruebas_lifeness, pruebas_readyness, True)
+#servicio_de_google_malo=Servicio("GoogleMalo", "googlemalo.es", pruebas_startup, pruebas_lifeness, pruebas_readyness, True)
 
-sistema_de_monitorizacion.alta_servicio(servicio_de_google)
-sistema_de_monitorizacion.alta_servicio(servicio_de_google_malo)
+#sistema_de_monitorizacion.alta_servicio(servicio_de_google)
+#sistema_de_monitorizacion.alta_servicio(servicio_de_google_malo)
+#################################################################################################
+sistema_de_monitorizacion.cargar_servicios("servicios.yaml");
+
+
 # 3º Iniciar la monitorizacion
 sistema_de_monitorizacion.monitorizar()
 # 4º Desactivar la monitorizacion para un servicio

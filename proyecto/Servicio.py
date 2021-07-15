@@ -10,13 +10,13 @@ class EstadoDeServicio(Enum):
 
 class Servicio:
     
-    def __init__(self, nombre, servidor, pruebas_startup, pruebas_lifeness, pruebas_readyness, monitorizar):
+    def __init__(self, nombre=None, servidor=None, pruebas_startup=[], pruebas_lifeness=[], pruebas_readyness=[], monitorizar=True, estado=EstadoDeServicio.UNKNOWN):
         self.nombre=nombre
         self.servidor=servidor
         self.pruebas_startup=pruebas_startup
         self.pruebas_lifeness=pruebas_lifeness
         self.pruebas_readyness=pruebas_readyness
-        self.estado=EstadoDeServicio.UNKNOWN
+        self.estado=estado
         self.monitorizar=monitorizar
         
     def imprimir_estado_servicio(self):

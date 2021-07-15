@@ -1,0 +1,29 @@
+---
+Nodos escalares:
+    numero entero: 3
+    numero decimal: 7
+    logico: True
+    texto: 
+        - HOLA
+        - "HOL\nA"
+        - 'HOLA'
+---
+Nodos de coleccion:
+    listas:
+        - 1
+        - 2
+        - 3
+        - 4
+    mapas o diccionarios: # Comentarios
+        clave: valor
+        otra clave: otro valor
+---
+!!Servicio:
+    nombre: Google
+    servidor: google.es
+
+---
+3
+---
+Hola
+---

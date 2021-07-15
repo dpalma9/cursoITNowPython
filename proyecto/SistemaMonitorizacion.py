@@ -1,6 +1,11 @@
 from Monitorizador import Monitorizador
 from threading import Thread
 import time
+import yaml
+##########
+from PruebaPing import PruebaPing
+from Servicio import Servicio
+from Servicio import EstadoDeServicio
 
 class SistemaMonitorizacion:
     
@@ -11,8 +16,33 @@ class SistemaMonitorizacion:
         self.__monitorizadores={}    
         self.__monitorizar=True
         self.__hilo_de_control=None
+    
+    def cargar_servicios(self, fichero):
+        with open (fichero,"r") as fichero_yaml:
+            contenido_del_fichero=yaml.load(fichero_yaml, Loader=yaml.FullLoader)
+        
+        for definicion_servicio in contenido_del_fichero:
+
+            for tipo_prueba, pruebas in definicion_servicio.pop("pruebas").items():
+                lista_de_pruebas=[]
+                for definicion_prueba in pruebas:
+                    prueba=self.crear_prueba_desde_diccionario(definicion_prueba)
+                    lista_de_pruebas.append(prueba)
+                definicion_servicio["pruebas_"+tipo_prueba]=lista_de_pruebas
             
+            servicio=Servicio()
+            definicion_servicio["estado"]=EstadoDeServicio.UNKNOWN
+            servicio.__dict__=definicion_servicio
             
+            self.alta_servicio(servicio)
+            
+    
+    def crear_prueba_desde_diccionario(self,diccionario):
+        # Control sobre lo que vienen en diccionario.get("tipo")
+        prueba=eval(diccionario.pop("tipo")+"()")      ######################## Generamos un objeto dinamicamente en funcion del contenido de una variable
+        prueba.__dict__=diccionario
+        return prueba
+    
     def alta_servicio(self, servicio):
         self.servicios[servicio.nombre]=servicio
         #########################################################################################################
