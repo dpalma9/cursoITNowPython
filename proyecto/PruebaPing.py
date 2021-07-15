@@ -10,7 +10,7 @@ class PruebaPing(Prueba):
         super().__init__(nombre, timeout, intervalo, numero_fallos_permitidos_consecutivos)
         
     def ejecutar(self, servidor):
-        subproceso=run( ("ping","-c","1",servidor) , stdout=PIPE, stderr=PIPE)
+        subproceso=run( ("ping","-c","1","-W",str(self.timeout),servidor) , stdout=PIPE, stderr=PIPE)
         return subproceso.returncode == 0
         
         #if subproceso.resturncode == 0:

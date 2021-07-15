@@ -84,4 +84,17 @@ diccionario["fecha"]="10-10-2020"
 print (diccionario.get("fecha"))  # Aqui no se genera error
 
 print (diccionario.get("indefinido"))  # Aqui no se genera error. Devuelve None
-print (diccionario["indefinido"])      # Genera un error en tiempo de ejecución
+#print (diccionario["indefinido"])      # Genera un error en tiempo de ejecución
+
+
+for clave in diccionario:
+    print("----"+clave)
+    print(diccionario.get(clave))
+    print(diccionario[clave])
+
+for clave,valor in diccionario.items():
+    print("++++"+clave)
+    print(valor)
+
+print(diccionario)
+print(diccionario.items())

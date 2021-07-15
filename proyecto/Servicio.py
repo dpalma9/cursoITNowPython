@@ -18,3 +18,6 @@ class Servicio:
         self.pruebas_readyness=pruebas_readyness
         self.estado=EstadoDeServicio.UNKNOWN
         self.monitorizar=monitorizar
+        
+    def imprimir_estado_servicio(self):
+        print(self.nombre+"   "+str(self.estado))
