@@ -60,32 +60,6 @@ print("Sigue mi codigo ejecutandose")
 os.mkdir("./ejemplos")
 input("Directorio creado. Pulse ENTER para borrarlo")
 os.rmdir("./ejemplos")
-os.remove("./fichero.txt")
 
 print(os.path.exists("./ejemplos/ejemplo.txt"))
-
-#################################
-
-import stat
-permisos_originales=os.stat("./ejemplo.txt").st_mode
-os.chmod("./ejemplo.txt", permisos_originales | stat.S_IXUSR  | stat.S_IXGRP )
-
-#USR GRO OTH
-#100 000 100
-#001 000 000 stat.S_IXUSR    OR    >     A | B   = 1? A o B es 1
-#000 001 000 stat.S_IXUSR    OR    >     A | B   = 1? A o B es 1
-#101 001 100 
-
-#RWX
-#100 > 4
-
-#000 > 0
-#001 > 1
-#010 > 2
-#011 > 3
-#100 > 4
-#101 > 5
-#110 > 6
-#111 > 7
-
 

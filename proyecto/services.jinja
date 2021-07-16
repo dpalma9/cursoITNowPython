@@ -1,0 +1,8 @@
+#!/bin/bash
+{% for SERVICIO in servicios %}
+VAR=$( systemctl status {{ SERVICIO | default("mysql") | lower }}  2> /dev/null | grep -c "active (running)" ) 
+if [[ $VAR == 0 ]]; then
+    exit 1
+fi
+{% endfor %}
+exit 0

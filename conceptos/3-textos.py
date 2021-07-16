@@ -29,3 +29,46 @@ print(texto.index(','))      # Posicion en la que aparece un determinado caracte
 # Formatos / Composición de textos
 
 # Regex
+import re
+
+#if re.match("regex","texto"):
+
+if re.match(".*error","la busqueda ha provocado un error."):
+    print("PUES SI 1")
+if re.match("^.*error","la busqueda ha provocado un error."):
+    print("PUES SI 2")
+if re.match("^error","error."):
+    print("PUES SI 3")
+if re.match("^error$","error."):
+    print("PUES SI 4")
+if re.match("^error$","error"):
+    print("PUES SI 5")
+if re.match(".*error$","tengo error"):
+    print("PUES SI 6")
+
+
+texto="HOLA AMIGO 1276"
+PATRON="[0-9]+"
+resultado=re.search(PATRON,texto)
+print(resultado.string)
+print(resultado.group())
+print(resultado.span())
+
+texto="HOLA AMIGO 1276 IVAN"
+PATRON="[A-Z]+"
+resultado=re.findall(PATRON,texto)
+for texto in resultado:
+    print(texto)
+
+texto="HOLA AMIGO COMO ESTAS"    
+PATRON="[AEIOU]"
+resultado=re.sub(PATRON,"O",texto)
+print(resultado)
+
+
+
+texto="+34 91  876-56/ 87"    
+PATRON="[+ -/]+"
+resultado=re.split(PATRON,texto)
+for item in resultado:
+    print(item)

@@ -3,7 +3,9 @@ from threading import Thread
 import time
 import yaml
 ##########
+from PruebaService import PruebaService
 from PruebaPing import PruebaPing
+from PruebaSelenium import PruebaSelenium
 from Servicio import Servicio
 from Servicio import EstadoDeServicio
 
@@ -40,7 +42,9 @@ class SistemaMonitorizacion:
     def crear_prueba_desde_diccionario(self,diccionario):
         # Control sobre lo que vienen en diccionario.get("tipo")
         prueba=eval(diccionario.pop("tipo")+"()")      ######################## Generamos un objeto dinamicamente en funcion del contenido de una variable
-        prueba.__dict__=diccionario
+        #print("ANTES"+str(prueba.__dict__))
+        prueba.__dict__.update(diccionario)
+        #print("DESPUES"+str(prueba.__dict__))
         return prueba
     
     def alta_servicio(self, servicio):

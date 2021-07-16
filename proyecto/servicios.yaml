@@ -1,5 +1,5 @@
--   nombre:   "Google"
-    servidor: "google.es"
+-   nombre:   "Cloud9"
+    servidor: "localhost"
     monitorizar: True
     pruebas:
         startup: 
@@ -9,6 +9,38 @@
                 timeout: 5
                 intervalo: 5
                 numero_fallos_permitidos_consecutivos: 3
+            
+        lifeness: 
+            -   tipo: PruebaSelenium
+                nombre: "Probar si el buscador de itnow funciona"
+                timeout: 5
+                intervalo: 5
+                numero_fallos_permitidos_consecutivos: 3
+                url: http://www.itnow.es/
+                operaciones:
+                    - escribir: servicios
+                      elemento: //input[@id='txtBuscar']
+                    - click: True
+                      elemento: //input[@id='ctl00_BuscadorMenu1_bt_search']
+                    - comprobar_no_texto: error
+                      elemento: //h2[contains(@class,'ms-search-header')]
+        readyness:
+            -   tipo: PruebaService 
+                nombre: "Probar Servicios Base de datos"
+                timeout: 5
+                intervalo: 5
+                numero_fallos_permitidos_consecutivos: 3
+                servicios:
+                    - mysql
+                    - ssh
+                    - ruina
+                usuario: ubuntu    
+-   nombre:   "Google"
+    servidor: "google.es"
+    monitorizar: True
+    pruebas:
+        startup: 
+            -   <<: *pruebaPing
         lifeness: 
             -   <<: *pruebaPing
                 nombre: "Ping Lifeness"
